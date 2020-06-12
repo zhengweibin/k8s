@@ -17,9 +17,12 @@ type ImageJob struct {
 
 // imagejobSpec is the spec for a jobImage resource
 type ImageJobSpec struct {
-	User     string `json:"user"`
-	Password string `json:"password"`
-	Encoding string `json:"encoding,omitempty"`
+	ContainerID string `json:"containerID"`
+	Name        string `json:"name"`
+	Repository  string `json:"repository"`
+	Tag         string `json:"tag"`
+	State       string `json:"state"`
+	Auth        string `json:"auth"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
