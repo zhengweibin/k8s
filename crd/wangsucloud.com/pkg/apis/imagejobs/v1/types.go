@@ -22,6 +22,7 @@ type ImageJobSpec struct {
 	Repository  string `json:"repository"`
 	Tag         string `json:"tag"`
 	State       string `json:"state"`
+	NodeName    string `json:"nodeName"`
 	Auth        string `json:"auth"`
 }
 
@@ -33,4 +34,18 @@ type ImageJobList struct {
 	metav1.ListMeta `json:"metadata"`
 
 	Items []ImageJob `json:"items"`
+}
+
+type ImageJobState string
+
+const (
+	Init    ImageJobState = "init"
+	Packing ImageJobState = "packing" // 镜像打包中
+	Pushing ImageJobState = "pushing" // 镜像推送中
+	Success ImageJobState = "success" // 镜像推送成功
+	Error   ImageJobState = "error"   // 失败
+)
+
+func (s *ImageJobState) String() string {
+	return string(*s)
 }
